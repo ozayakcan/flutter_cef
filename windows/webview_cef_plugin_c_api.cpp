@@ -1,5 +1,7 @@
 ﻿#include "include/webview_cef/webview_cef_plugin_c_api.h"
 
+
+#include <include/cef_base.h>
 #include "webview_cef_plugin.h"
 
 void WebviewCefPluginCApiRegisterWithRegistrar(
@@ -9,8 +11,7 @@ void WebviewCefPluginCApiRegisterWithRegistrar(
 
 FLUTTER_PLUGIN_EXPORT int initCEFProcesses(HINSTANCE hInstance)
 {
-	CefMainArgs main_args(hInstance);
-	return webview_cef::initCEFProcesses(main_args);
+	return webview_cef::initCEFProcesses(CefMainArgs(hInstance));
 }
  
 FLUTTER_PLUGIN_EXPORT void handleWndProcForCEF(HWND hwnd, unsigned int message, unsigned __int64 wParam, __int64 lParam)
