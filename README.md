@@ -1,6 +1,6 @@
-# WebView CEF
+# Flutter CEF
 
-<a href="https://pub.dev/packages/webview_cef"><img src="https://img.shields.io/pub/likes/webview_cef?logo=dart" alt="Pub.dev likes"/></a> <a href="https://pub.dev/packages/webview_cef" alt="Pub.dev popularity"><img src="https://img.shields.io/pub/popularity/webview_cef?logo=dart"/></a> <a href="https://pub.dev/packages/webview_cef"><img src="https://img.shields.io/pub/points/webview_cef?logo=dart" alt="Pub.dev points"/></a> <a href="https://pub.dev/packages/webview_cef"><img src="https://img.shields.io/pub/v/webview_cef.svg" alt="latest version"/></a> <a href="https://pub.dev/packages/webview_cef"><img src="https://img.shields.io/badge/macOS%20%7C%20Windows%20%7C%20Linux-blue?logo=flutter" alt="Platform"/></a>
+<a href="https://pub.dev/packages/flutter_cef"><img src="https://img.shields.io/pub/likes/flutter_cef?logo=dart" alt="Pub.dev likes"/></a> <a href="https://pub.dev/packages/flutter_cef" alt="Pub.dev popularity"><img src="https://img.shields.io/pub/popularity/flutter_cef?logo=dart"/></a> <a href="https://pub.dev/packages/flutter_cef"><img src="https://img.shields.io/pub/points/flutter_cef?logo=dart" alt="Pub.dev points"/></a> <a href="https://pub.dev/packages/flutter_cef"><img src="https://img.shields.io/pub/v/flutter_cef.svg" alt="latest version"/></a> <a href="https://pub.dev/packages/flutter_cef"><img src="https://img.shields.io/badge/macOS%20%7C%20Windows%20%7C%20Linux-blue?logo=flutter" alt="Platform"/></a>
 
 Flutter Desktop WebView backed by CEF (Chromium Embedded Framework).
 This project is under heavy development, and the APIs are not stable yet.
@@ -31,7 +31,7 @@ Inside your application folder, you need to add some lines in your `windows\runn
 
 ```cpp
 //Introduce the source code of this plugin into your own project
-#include "webview_cef/webview_cef_plugin_c_api.h"
+#include "flutter_cef/flutter_cef_plugin_c_api.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
                       _In_ wchar_t *command_line, _In_ int show_command) {
@@ -64,8 +64,8 @@ Update your `pubspec.yaml` file to accomodate the change.
 
 dependencies:
   # Webview
-  webview_cef:
-    path: ./packages/webview_cef     # Or wherever you cloned the repo
+  flutter_cef:
+    path: ./packages/flutter_cef     # Or wherever you cloned the repo
     
     
 ...
@@ -73,9 +73,9 @@ dependencies:
 
 Then follow the below steps inside the `macos/` folder <b>of the cloned repository</b>.<br/><br/>
 
-1. Download prebuilt cef bundles from [arm64](https://github.com/hlwhl/webview_cef/releases/download/prebuilt_cef_bin_mac_arm64/CEFbins-mac103.0.12-arm64.zip) or [intel](https://github.com/hlwhl/webview_cef/releases/download/prebuilt_cef_bin_mac_intel/mac103.0.12-Intel.zip) depends on your target machine arch.
+1. Download prebuilt cef bundles from [arm64](https://github.com/ozayakcan/flutter_cef/releases/download/cef_binary_114.2.9%2Bchromium-114.0.5735.91/mac103.0.12-arm64.zip) or [intel](https://github.com/ozayakcan/flutter_cef/releases/download/cef_binary_114.2.9%2Bchromium-114.0.5735.91/mac103.0.12-Intel.zip) depends on your target machine arch.
 
-> Note: You can also download [universal binary](https://github.com/hlwhl/webview_cef/releases/download/prebuilt_cef_bin_mac_universal/mac103.0.12-universal.zip) for build an mac-universal app if you want to build an mac universal app. See [#30](/../../issues/30). Thanks to [@okiabrian123](https://github.com/okiabrian123).
+> Note: You can also download [universal binary](https://github.com/ozayakcan/flutter_cef/releases/download/cef_binary_114.2.9%2Bchromium-114.0.5735.91/mac103.0.12-universal.zip) for build an mac-universal app if you want to build an mac universal app. See [#30](/../../issues/30). Thanks to [@okiabrian123](https://github.com/okiabrian123).
 
 2. Unzip the archive and put all files into `macos/third/cef`. (Inside the cloned repository, not your project)
 
@@ -89,7 +89,7 @@ Then follow the below steps inside the `macos/` folder <b>of the cloned reposito
 
 ### Linux <img src="https://1000logos.net/wp-content/uploads/2017/03/LINUX-LOGO.png" width="16">
 
-For Linux, just adding `webview_cef` to your `pubspec.yaml` (e.g. by running `flutter pub add webview_cef`) does the job.
+For Linux, just adding `flutter_cef` to your `pubspec.yaml` (e.g. by running `flutter pub add flutter_cef`) does the job.
 
 ## TODOs
 
@@ -111,7 +111,7 @@ For Linux, just adding `webview_cef` to your `pubspec.yaml` (e.g. by running `fl
 
 ## Demo
 
-This demo is a simple webview app that can be used to test the `webview_cef` plugin.
+This demo is a simple webview app that can be used to test the `flutter_cef` plugin.
 
 <kbd>![demo_compressed](https://user-images.githubusercontent.com/7610615/190432410-c53ef1c4-33c2-461b-af29-b0ecab983579.gif)</kbd>
 
@@ -119,10 +119,10 @@ This demo is a simple webview app that can be used to test the `webview_cef` plu
 
 | Windows <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Windows_logo_-_2021.svg/1200px-Windows_logo_-_2021.svg.png" width="12"> | macOS <img src="https://seeklogo.com/images/A/apple-logo-52C416BDDD-seeklogo.com.png" width="11"> | Linux <img src="https://1000logos.net/wp-content/uploads/2017/03/LINUX-LOGO.png" width="12"> |
 | --- | --- | --- |
-| <img src="https://user-images.githubusercontent.com/7610615/190431027-6824fac1-015d-4091-b034-dd58f79adbcb.png" width="400" /> | <img src="https://user-images.githubusercontent.com/7610615/190911381-db88cf33-70a2-4abc-9916-e563e54eb3f9.png" width="400" /> | <img src ="https://github.com/hlwhl/webview_cef/assets/49640121/50a4c2f6-1f24-4d10-9913-ad274d76cf3f" width="400" /> |
-| <img src="https://user-images.githubusercontent.com/7610615/190431037-62ba0ea7-f7d1-4fca-8ce1-596a0a508f93.png" width="400" /> | <img src="https://user-images.githubusercontent.com/7610615/190911410-bd01e912-5482-4f9e-9dae-858874e5aaed.png" width="400" /> | <img src="https://github.com/hlwhl/webview_cef/assets/49640121/10a693d5-4ee0-4389-a1e8-1b0355f7c0a6" width="400" /> |
-| <img src="https://user-images.githubusercontent.com/7610615/195815041-b9ec4da8-560f-4257-9303-f03a016da5c6.png" width="400" /> | <img width="400" alt="image" src="https://user-images.githubusercontent.com/7610615/195818746-e5adf0ef-dc8c-48ad-9b11-e552ca65b08a.png"> | <img src="https://github.com/hlwhl/webview_cef/assets/49640121/3a81f576-b555-4e16-8609-b3c7d6eec869" width="400" /> |
+| <img src="https://user-images.githubusercontent.com/7610615/190431027-6824fac1-015d-4091-b034-dd58f79adbcb.png" width="400" /> | <img src="https://user-images.githubusercontent.com/7610615/190911381-db88cf33-70a2-4abc-9916-e563e54eb3f9.png" width="400" /> | <img src ="https://user-images.githubusercontent.com/49640121/284262976-50a4c2f6-1f24-4d10-9913-ad274d76cf3f.png" width="400" /> |
+| <img src="https://user-images.githubusercontent.com/7610615/190431037-62ba0ea7-f7d1-4fca-8ce1-596a0a508f93.png" width="400" /> | <img src="https://user-images.githubusercontent.com/7610615/190911410-bd01e912-5482-4f9e-9dae-858874e5aaed.png" width="400" /> | <img src="https://user-images.githubusercontent.com/49640121/284262428-10a693d5-4ee0-4389-a1e8-1b0355f7c0a6.png" width="400" /> |
+| <img src="https://user-images.githubusercontent.com/7610615/195815041-b9ec4da8-560f-4257-9303-f03a016da5c6.png" width="400" /> | <img width="400" alt="image" src="https://user-images.githubusercontent.com/7610615/195818746-e5adf0ef-dc8c-48ad-9b11-e552ca65b08a.png"> | <img src="https://user-images.githubusercontent.com/49640121/284265433-3a81f576-b555-4e16-8609-b3c7d6eec869.png" width="400" /> |
 
 ## Credits
 
-This project is inspired from [**`flutter_webview_windows`**](https://github.com/jnschulze/flutter-webview-windows).
+This project is inspired from [**`flutter_webview_windows`**](https://github.com/jnschulze/flutter-webview-windows) and it is a fork from [**`webview_cef`**](https://github.com/hlwhl/webview_cef)

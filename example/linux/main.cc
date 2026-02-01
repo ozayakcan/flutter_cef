@@ -1,5 +1,5 @@
 #include "my_application.h"
-#include <webview_cef/webview_cef_plugin.h>
+#include <flutter_cef/flutter_cef_plugin.h>
 
 int main(int argc, char** argv) {
   int exit_code = initCEFProcesses(argc, argv);

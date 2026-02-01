@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 # Project-level configuration.
-set(PROJECT_NAME "webview_cef")
+set(PROJECT_NAME "flutter_cef")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
@@ -18,13 +18,13 @@ prepare_prebuilt_files(${CMAKE_CURRENT_SOURCE_DIR}/../third/cef)
 
 # This value is used when generating builds using this plugin, so it must
 # not be changed
-set(PLUGIN_NAME "webview_cef_plugin")
+set(PLUGIN_NAME "flutter_cef_plugin")
 
 # Any new source files that you add to the plugin should be added here.
 list(APPEND PLUGIN_SOURCES
-  "webview_cef_plugin.cpp"
-  "webview_cef_plugin.h"
-  "webview_cef_keyevent.h"
+  "flutter_cef_plugin.cpp"
+  "flutter_cef_plugin.h"
+  "flutter_cef_keyevent.h"
   "${CMAKE_CURRENT_LIST_DIR}/../common/webview_app.cc"
   "${CMAKE_CURRENT_LIST_DIR}/../common/webview_app.h"
   "${CMAKE_CURRENT_LIST_DIR}/../common/webview_handler.cc"
@@ -42,8 +42,8 @@ list(APPEND PLUGIN_SOURCES
 # Define the plugin library target. Its name must not be changed (see comment
 # on PLUGIN_NAME above).
 add_library(${PLUGIN_NAME} SHARED
-  "include/webview_cef/webview_cef_plugin_c_api.h"
-  "webview_cef_plugin_c_api.cpp"
+  "include/flutter_cef/flutter_cef_plugin_c_api.h"
+  "flutter_cef_plugin_c_api.cpp"
   ${PLUGIN_SOURCES}
 )
 
@@ -75,7 +75,7 @@ optimized ${CMAKE_CURRENT_SOURCE_DIR}/../third/cef/release/libcef_dll_wrapper.li
 # List of absolute paths to libraries that should be bundled with the plugin.
 # This list could contain prebuilt libraries, or libraries created by an
 # external build triggered from this build file.
-set(webview_cef_bundled_libraries
+set(flutter_cef_bundled_libraries
     "${CMAKE_CURRENT_SOURCE_DIR}/../third/cef/resources/locales"
     "${CMAKE_CURRENT_SOURCE_DIR}/../third/cef/resources/icudtl.dat"
     "${CMAKE_CURRENT_SOURCE_DIR}/../third/cef/resources/resources.pak"

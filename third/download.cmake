@@ -1,22 +1,20 @@
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     message(WARNING "current system is Linux")
     if(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "aarch64")
-        set(cef_prebuilt_path "https://cef-builds.spotifycdn.com/cef_binary_130.1.2%2Bg48f3ef6%2Bchromium-130.0.6723.44_linuxarm64.tar.bz2")
-        set(cef_prebuilt_version "cef_binary_130.1.2%2Bg48f3ef6%2Bchromium-130.0.6723.44_linuxarm64.tar.bz2")
+        set(cef_prebuilt_path "https://cef-builds.spotifycdn.com/cef_binary_114.2.9%2Bg1a97a28%2Bchromium-114.0.5735.91_linuxarm64.tar.bz2")
+        set(cef_prebuilt_version "cef_binary_114.2.9+chromium-114.0.5735.91_linuxarm64")
     else()
-        set(cef_prebuilt_path "https://cef-builds.spotifycdn.com/cef_binary_130.1.2%2Bg48f3ef6%2Bchromium-130.0.6723.44_linux64.tar.bz2")
-        set(cef_prebuilt_version "cef_binary_130.1.2%2Bg48f3ef6%2Bchromium-130.0.6723.44_linux64.tar.bz2")
+        set(cef_prebuilt_path "https://cef-builds.spotifycdn.com/cef_binary_114.2.9%2Bg1a97a28%2Bchromium-114.0.5735.91_linux64.tar.bz2")
+        set(cef_prebuilt_version "cef_binary_114.2.9+chromium-114.0.5735.91_linux64")
     endif()
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     message(WARNING "current system is Windows")
-    set(cef_prebuilt_path "https://github.com/hlwhl/webview_cef/releases/download/prebuilt_cef_bin_linux/webview_cef_bin_0.0.2_101.0.18+chromium-101.0.4951.67_windows64.zip")
-    set(cef_prebuilt_version "webview_cef_bin_0.0.2_101.0.18+chromium-101.0.4951.67_windows64")
+    set(cef_prebuilt_path "https://github.com/ozayakcan/flutter_cef/releases/download/cef_binary_114.2.9%2Bchromium-114.0.5735.91/windows-x64-114.2.9.zip")
+    set(cef_prebuilt_version "cef_binary_114.2.9+chromium-114.0.5735.91")
 # elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 #     message(STATUS "current system is MacOS")
 #     set(cef_prebuilt_path "")
 endif()
-set(cef_prebuilt_version_path "https://github.com/hlwhl/webview_cef/releases/download/prebuilt_cef_bin_linux/version.txt")
-
 
 function(extract_file filename extract_dir)
     message(WARNING "${filename} will extract to ${extract_dir} ...")
@@ -44,9 +42,24 @@ endfunction()
 
 function(download_file url filename)
     message(WARNING "Downloading ${filename} from ${url}")
-    file(DOWNLOAD ${url} ${filename} STATUS SHOW_PROGRESS)
-endfunction(download_file)
+    
+    file(DOWNLOAD "${url}" "${filename}"
+        SHOW_PROGRESS
+        TLS_VERIFY OFF
+        USER_AGENT "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+        STATUS status
+    )
 
+    # Durumu kontrol et ve hata varsa göster
+    list(GET status 0 status_code)
+    list(GET status 1 status_string)
+
+    if(NOT status_code EQUAL 0)
+        message(FATAL_ERROR "Error Code: ${status_code} - Message: ${status_string}")
+    else()
+        message(STATUS "Download completed successfully.")
+    endif()
+endfunction(download_file)
 function(prepare_prebuilt_files filepath)
     set(need_download FALSE)
 
@@ -84,6 +97,6 @@ function(prepare_prebuilt_files filepath)
         endif()
 
         file(WRITE "${filepath}/version.txt" "${cef_prebuilt_version}")
-        file(REMOVE_RECURSE ${CMAKE_CURRENT_SOURCE_DIR}/prebuilt.zip)
+        ##file(REMOVE_RECURSE ${CMAKE_CURRENT_SOURCE_DIR}/prebuilt.zip)
     endif()
 endfunction(prepare_prebuilt_files)

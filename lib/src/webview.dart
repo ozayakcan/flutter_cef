@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:webview_cef/src/webview_inject_user_script.dart';
+import 'package:flutter_cef/src/webview_inject_user_script.dart';
 
 import 'webview_manager.dart';
 import 'webview_events_listener.dart';
@@ -385,7 +385,7 @@ class WebViewState extends State<WebView> with WebeViewTextInput {
       autofocus: true,
       focusNode: _focusNode,
       canRequestFocus: true,
-      debugLabel: "webview_cef",
+      debugLabel: "flutter_cef",
       onFocusChange: (focused) {
         _composingText = '';
         if (focused) {

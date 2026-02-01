@@ -6,7 +6,7 @@
 #include <include/cef_base.h>
 
 #include <functional>
-namespace webview_cef {
+namespace flutter_cef {
     class WebviewTexture{
     public:
         virtual ~WebviewTexture(){}

@@ -10,7 +10,7 @@
 #include <iostream>
 #include <unordered_map>
 
-namespace webview_cef {
+namespace flutter_cef {
 	CefMainArgs mainArgs;
 	CefRefPtr<WebviewApp> app;
 	CefString userAgent;

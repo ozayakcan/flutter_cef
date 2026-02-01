@@ -1,15 +1,15 @@
 //
-//  WebviewCefTexture.h
+//  FlutterCefTexture.h
 //  Pods
 //
 //  Created by Hao Linwei on 2022/8/18.
 //
 
-#ifndef WebviewCefTexture_h
-#define WebviewCefTexture_h
+#ifndef FlutterCefTexture_h
+#define FlutterCefTexture_h
 #import <FlutterMacOS/FlutterMacOS.h>
 
-@interface WebviewCefTexture : NSObject<FlutterTexture>
+@interface FlutterCefTexture : NSObject<FlutterTexture>
 {
     CVPixelBufferRef _pixelBuffer;
     CVPixelBufferRef _pixelBufferTemp;
@@ -20,4 +20,4 @@
 
 @end
 
-#endif /* WebviewCefTexture_h */
+#endif /* FlutterCefTexture_h */

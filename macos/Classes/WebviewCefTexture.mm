@@ -1,16 +1,16 @@
 //
-//  WebviewCefTexture.m
+//  FlutterCefTexture.m
 //  Pods-Runner
 //
 //  Created by Hao Linwei on 2022/8/18.
 //
 
-#import "WebviewCefTexture.h"
+#import "FlutterCefTexture.h"
 #import <Foundation/Foundation.h>
 
 typedef void(^RetainSelfBlock)(void);
 
-@implementation WebviewCefTexture
+@implementation FlutterCefTexture
 
 - (id) init {
     self = [super init];

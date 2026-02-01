@@ -1,17 +1,17 @@
-#import "WebviewCefPlugin.h"
+#import "FlutterCefPlugin.h"
 #import "CefWrapper.h"
 
-@implementation WebviewCefPlugin{
+@implementation FlutterCefPlugin{
     CefWrapper *_cefWrapper;
 }
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
 
     FlutterMethodChannel* channel = [FlutterMethodChannel
-                                     methodChannelWithName:@"webview_cef"
+                                     methodChannelWithName:@"flutter_cef"
                                      binaryMessenger:[registrar messenger]];
     
-    WebviewCefPlugin *instance = [[WebviewCefPlugin alloc] init];
+    FlutterCefPlugin *instance = [[FlutterCefPlugin alloc] init];
     
     [registrar addMethodCallDelegate:instance channel:channel];
     instance->_cefWrapper = [[CefWrapper alloc] init];

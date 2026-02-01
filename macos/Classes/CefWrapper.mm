@@ -6,7 +6,7 @@
 //
 
 #import "CefWrapper.h"
-#import "WebviewCefTexture.h"
+#import "FlutterCefTexture.h"
 #import <Foundation/Foundation.h>
 #import "include/cef_base.h"
 #import "../../common/webview_app.h"
@@ -23,14 +23,14 @@ static BOOL isCefMessageLoop = NO;
 NSMapTable* webviewPlugins = [NSMapTable weakToWeakObjectsMapTable];
 
 @implementation CefWrapper{
-    std::shared_ptr<webview_cef::WebviewPlugin> _plugin;
+    std::shared_ptr<flutter_cef::WebviewPlugin> _plugin;
 }
 
-class WebviewTextureRenderer : public webview_cef::WebviewTexture {
+class WebviewTextureRenderer : public flutter_cef::WebviewTexture {
 public:
     WebviewTextureRenderer(NSObject<FlutterTextureRegistry>* registry){
         textureRegistry = registry;
-        texture = [[WebviewCefTexture alloc] init];
+        texture = [[FlutterCefTexture alloc] init];
         textureId = [textureRegistry registerTexture:texture];
     }
 
@@ -44,7 +44,7 @@ public:
     }
 
 private:
-    WebviewCefTexture* texture;
+    FlutterCefTexture* texture;
     NSObject<FlutterTextureRegistry>* textureRegistry;
 };
 
@@ -276,15 +276,15 @@ private:
 }
 
 - (void)doMessageLoopWork {
-    webview_cef::doMessageLoopWork();
+    flutter_cef::doMessageLoopWork();
 }
 
 - (id) init {
     self = [super init];
     if (self) {
-        _plugin = std::make_shared<webview_cef::WebviewPlugin>();
+        _plugin = std::make_shared<flutter_cef::WebviewPlugin>();
         if(isCefProcessInit == NO){
-            webview_cef::initCEFProcesses();
+            flutter_cef::initCEFProcesses();
             isCefProcessInit = YES;
         }
         _plugin->setInvokeMethodFunc([=](std::string method, WValue* arguments){
@@ -294,7 +294,7 @@ private:
 
         _plugin->setCreateTextureFunc([=]() {
             std::shared_ptr<WebviewTextureRenderer> renderer = std::make_shared<WebviewTextureRenderer>(self.textureRegistry);
-            return std::dynamic_pointer_cast<webview_cef::WebviewTexture>(renderer);
+            return std::dynamic_pointer_cast<flutter_cef::WebviewTexture>(renderer);
         });
     }
     return self;

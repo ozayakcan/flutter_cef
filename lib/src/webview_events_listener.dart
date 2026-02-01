@@ -1,4 +1,4 @@
-import 'package:webview_cef/src/webview.dart';
+import 'package:flutter_cef/src/webview.dart';
 
 typedef TitleChangeCb = void Function(String title);
 typedef UrlChangeCb = void Function(String url);
